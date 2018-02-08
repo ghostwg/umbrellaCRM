@@ -1,0 +1,51 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
+
+                <div class="logo-wrap">
+                    <img class="umbrella" src="{{ asset('bundles/admin/img/umbrella-75.png') }}" alt="Umbrella"/>
+
+                    <h1>Umbrella</h1>
+                </div>
+
+                {% if error %}
+                    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                <form class="login-form" action="{{ path("fos_user_security_check") }}" method="post">
+                    {% if csrf_token %}
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+                    {% endif %}
+
+                    <div class="group">
+                        <input type="text" id="username" name="_username" value="{{ last_username }}"
+                               required="required" class="login-input"/>
+                        <span class="highlight"></span><span class="bar"></span>
+                        <label class="like-plhld" for="username">{{ 'security.login.username'|trans }}</label>
+                    </div>
+
+                    <div class="group">
+                        <input type="password" id="password" name="_password" required="required" class="login-input"/>
+                        <span class="highlight"></span><span class="bar"></span>
+                        <label class="like-plhld" for="password">{{ 'security.login.password'|trans }}</label>
+                    </div>
+
+                    <div class="group group-check">
+                        <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
+                        <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                    </div>
+
+                    <button type="submit" id="_submit" name="_submit"
+                            class="btn btn-login btn-success">{{ 'security.login.submit'|trans }}
+                        <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

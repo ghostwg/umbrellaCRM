@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" media="all" href="{{ absolute_url(asset('bundles/sonatacore/vendor/bootstrap/dist/css/bootstrap.min.css')) }}" />
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}
+            <script src="{{ absolute_url(asset('bundles/sonatacore/vendor/jquery/dist/jquery.min.js')) }}"></script>
+            <script src="{{ absolute_url(asset('bundles/sonatacore/vendor/bootstrap/dist/js/bootstrap.min.js')) }}"></script>
+        {% endblock %}
+    </body>
+</html>

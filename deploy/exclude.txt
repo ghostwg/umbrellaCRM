@@ -1,0 +1,9 @@
+vendor/
+var/
+app/config/parameters.yml
+web/app_dev.php
+web/uploads/
+.git/
+.idea/
+config.php
+deploy/

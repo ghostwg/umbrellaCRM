@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+
+{% block stylesheets %}
+        <link rel="stylesheet" media="all" href="{{ absolute_url(asset('bundles/sonatacore/vendor/bootstrap/dist/css/bootstrap.min.css')) }}" />
+        <link rel="stylesheet" media="all" href="{{ absolute_url(asset('bundles/app/css/pdf.css')) }}" />
+
+{% endblock %}
+
+{% block javascripts %}
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script src="{{ absolute_url(asset('bundles/sonatacore/vendor/jquery/dist/jquery.min.js')) }}"></script>
+        <script src="{{ absolute_url(asset('bundles/sonatacore/vendor/bootstrap/dist/js/bootstrap.min.js')) }}"></script>
+{% endblock %}

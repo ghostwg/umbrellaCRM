@@ -1,0 +1,115 @@
+sonata_admin:
+    title: 'Umbrella'
+    title_logo : '/bundles/admin/img/umbrella-75.png'
+    templates:
+        layout: AdminBundle::sonata_admin_base_layout.html.twig
+#    security:
+#        handler: sonata.admin.security.handler.acl
+#        # acl security information
+#        information:
+#            GUEST:    [VIEW, LIST]
+#            STAFF:    [EDIT, LIST, CREATE]
+#            EDITOR:   [OPERATOR, EXPORT]
+#            ADMIN:    [MASTER]
+#            IMAGE_EDITOR: [LIST, CREATE, VIEW, DELETE]
+#
+#        # permissions not related to an object instance and also to be available when objects do not exist
+#        # the DELETE admin permission means the user is allowed to batch delete objects
+#        admin_permissions: [CREATE, LIST, DELETE, UNDELETE, EXPORT, OPERATOR, MASTER]
+#
+#        # permission related to the objects
+#        object_permissions: [VIEW, EDIT, DELETE, UNDELETE, OPERATOR, MASTER, OWNER]
+
+    security:
+        handler: sonata.admin.security.handler.role
+
+#        ROLE_ADMIN: ROLE_ADMIN
+#        role_admin: [ROLE_ADMIN]
+#        role_super_admin: ROLE_SUPER_ADMIN
+
+    dashboard:
+        blocks:
+            -
+                position: top
+                class:    col-md-10
+                type: sonata.block.service.announcement
+                settings:
+                    template: '@Admin/SonataBlock/Block/dashboard-announcement-block.html.twig'
+                roles:
+                    - ROLE_ACCOUNTANT
+                    - ROLE_SUPER_ADMIN
+                    - ROLE_BROKER
+                    - ROLE_MANAGER
+                    - ROLE_TOP_MANAGER
+
+            -
+                position: left
+                type: sonata.block.service.salary_stats
+                settings:
+                    template: '@Admin/SonataBlock/Block/dashboard-salary-stats-block.html.twig'
+                roles:
+                    - ROLE_BROKER
+                    - ROLE_EXPERT
+                    - ROLE_MANAGER
+
+            -
+                position: top
+                class:    col-md-10
+                type: sonata.block.service.text
+                settings:
+                    template: 'AdminBundle::dashboard-accountant-salary-brief-block.html.twig'
+                roles:
+                    - ROLE_ACCOUNTANT
+#                    - ROLE_SUPER_ADMIN
+
+            -
+                position: left
+                type: sonata.block.service.text
+                settings:
+                    template: 'AdminBundle::dashboard-accountant-exchange-rate.html.twig'
+                roles:
+                    - ROLE_ACCOUNTANT
+#                    - ROLE_SUPER_ADMIN
+
+            -
+                position: left
+                type: sonata.block.service.text
+                settings:
+                    template: 'AdminBundle::dashboard-accountant-block-report.html.twig'
+                roles:
+                    - ROLE_ACCOUNTANT
+#                    - ROLE_SUPER_ADMIN
+            -
+                position: left
+                type: sonata.admin.block.admin_list
+
+
+        groups:
+            accountant:
+                label:                ~
+                label_catalogue:      ~
+                items:
+                    - admin.user
+                roles: [ROLE_ACCOUNTANT]
+
+            broker:
+                label:                ~
+                label_catalogue:      ~
+                items:
+                    - admin.customer
+                    - admin.transaction
+                    - admin.brand
+                roles: [ROLE_BROKER, ROLE_MANAGER, ROLE_ACCOUNTANT]
+
+            misc:
+                label:                ~
+                label_catalogue:      ~
+                items:
+                    - admin.announcement
+                roles: [ROLE_MANAGER, ROLE_ACCOUNTANT, ROLE_SUPER_ADMIN]
+
+
+sonata_doctrine_orm_admin:
+    templates:
+        form:
+            - SonataDoctrineORMAdminBundle:Form:form_admin_fields.html.twig

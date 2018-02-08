@@ -1,0 +1,52 @@
+# This file is a "template" of what your parameters.yml file should look like
+# Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
+# https://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
+parameters:
+    database_host: 127.0.0.1
+    database_port: ~
+    database_name: umbrella
+    database_user: umbrella
+    database_password: ~
+    # You should uncomment this if you want to use pdo_sqlite
+    #database_path: '%kernel.project_dir%/var/data/data.sqlite'
+
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: ~
+    mailer_password: ~
+
+    # A secret key that's used to generate certain security-related tokens
+    secret: ThisTokenIsNotSoSecretChangeIt
+
+    mailer_user: no-reply@example.org
+    customer_status:
+        0: 'New'
+        1: 'Call back'
+        2: 'No answer'
+        3: 'Not interested'
+        4: 'No call'
+        5: 'Reassign'
+        6: 'Wrong Number'
+        7: 'N/A'
+    customer_compliance:
+        0: 'None'
+        1: 'Partial'
+        2: 'Full'
+    brand_roles:
+        0: 'Broker Retention'
+        1: 'Broker Conversion'
+        2: 'Expert Retention'
+        3: 'Expert Conversion'
+        4: 'Manager Retention'
+        5: 'Manager Conversion'
+    report_path: '%kernel.root_dir%/../web/reports'
+    monthly_report_path: '/web/reports/monthly'
+    monthly_report_abs_path: '%report_path%/monthly'
+    transaction_types:
+        0: None
+        1: Deposit - Credit Card
+        2: Deposit - Bank Wire
+        3: Withdrawal - Credit Card
+        4: Withdrawal - Bank Wire
+        5: Charge Back
+        6: Charge Back Prevention
